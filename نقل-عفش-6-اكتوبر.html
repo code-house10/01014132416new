@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDWNCW2Q');</script>
+<!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة نقل الأثاث</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- El Messiri Font -->
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'El Messiri', sans-serif; /* Changed font to El Messiri */
+            color: #444444; /* Neutral Text */
+        }
+        .gradient-bg-hero {
+            background: linear-gradient(to bottom, #f9f9f9, #ffffff); /* Light gray-to-white vertical gradient */
+        }
+        .gradient-bg-orange {
+            background: linear-gradient(to right, #ff7700, #ffa500); /* Bright orange gradient */
+        }
+        .btn-orange {
+            background-color: #ff7700; /* CTA Button Orange */
+            color: #ffffff;
+            border-radius: 20px; /* Rounded pill */
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-orange:hover {
+            background-color: #ea661c; /* Darker orange */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow */
+        }
+        .btn-blue {
+            background-color: #005eff; /* Action Buttons Blue */
+            color: #ffffff;
+            border-radius: 20px; /* Rounded pill */
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-blue:hover {
+            transform: translateY(-2px); /* Subtle hover lift */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .text-orange-primary {
+            color: #ea661c; /* Primary Brand Color Orange */
+        }
+        .text-dark-gray {
+            color: #333333; /* Dark gray for header text */
+        }
+        .text-medium-gray {
+            color: #666666; /* Medium gray for subtext */
+        }
+        .text-muted-gray {
+            color: #777777; /* Muted gray for descriptions */
+        }
+        .bg-light-gray-section {
+            background-color: #f9f9f9; /* Section Background Very Light Gray */
+        }
+        .card-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Slight shadow for cards */
+        }
+        /* Custom style for the offer shape */
+        .offer-shape {
+            clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%, 10% 50%);
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* Adjusted for RTL */
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        .hidden-step {
+            display: none;
+        }
+
+        /* New Catchy Offer Banner Styles */
+        .catchy-banner {
+            background-color: #dc2626; /* Red-600 */
+            color: #ffffff;
+            padding: 0.3rem 0.75rem; /* Smaller padding for mobile */
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem; /* Smaller gap for mobile */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%; /* Default to wider on small screens */
+            max-width: 700px; /* Max width for larger screens */
+            border-radius: 9999px; /* Pill shape */
+            z-index: 900; /* Ensure it's above other content */
+        }
+        @media (min-width: 768px) { /* Apply larger padding and gap on medium screens and up */
+            .catchy-banner {
+                padding: 0.75rem 1.5rem;
+                gap: 1rem;
+            }
+        }
+        .catchy-banner .countdown-box {
+            background-color: #ffffff;
+            color: #dc2626; /* Red-600 */
+            padding: 0.2rem 0.6rem; /* Smaller padding for mobile */
+            border-radius: 9999px; /* Pill shape */
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        @media (min-width: 768px) {
+            .catchy-banner .countdown-box {
+                padding: 0.25rem 0.75rem;
+            }
+        }
+        .catchy-banner .cta-button {
+            background-color: #fcd34d; /* Yellow-300 */
+            color: #9a3412; /* Red-800 */
+            padding: 0.4rem 0.8rem; /* Smaller padding for mobile */
+            border-radius: 9999px; /* Pill shape */
+            font-weight: bold;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
+        @media (min-width: 768px) {
+            .catchy-banner .cta-button {
+                padding: 0.5rem 1rem;
+            }
+        }
+        .catchy-banner .cta-button:hover {
+            background-color: #facc15; /* Yellow-400 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .catchy-banner .close-button {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem; /* Smaller font size for mobile close button */
+            cursor: pointer;
+            position: absolute;
+            right: 0.5rem; /* Adjusted for smaller size */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        @media (min-width: 768px) {
+            .catchy-banner .close-button {
+                font-size: 1.5rem;
+                right: 1rem;
+            }
+        }
+        .catchy-banner.hide {
+            opacity: 0;
+            transform: translateX(-50%) translateY(100px); /* Adjusted for bottom position */
+            pointer-events: none; /* Disable interactions when hidden */
+        }
+
+        /* FAQ styles */
+        .faq-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ea661c;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+        .faq-answer {
+            padding: 1rem 1.5rem;
+            color: #444444;
+            display: none; /* Hidden by default */
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+        }
+        .faq-question svg {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDWNCW2Q"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <!-- New Catchy Offer Banner -->
+    <div id="catchy-offer-banner" class="catchy-banner">
+        <span class="text-sm md:text-lg font-bold">خصم : 25% لنقل  العفش بـ  6 اكتوبر - ينتهى خلال!</span>
+        <div class="countdown-box">
+            <span id="new-countdown-timer" class="text-xs md:text-base"></span>
+        </div>
+        <a href="#" id="new-banner-cta-button" class="cta-button text-sm md:text-base">
+            إستفد بالخصم الأن!
+        </a>
+        <button id="close-new-banner-button" class="close-button">&times;</button>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="bg-white text-dark-gray shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo and Company Name -->
+            <div class="flex items-center">
+                <a href="#" class="flex items-center text-2xl font-bold text-dark-gray">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/imgs/elsaree3-logo-transparent.png" alt="شعار نقل عفش 6 اكتوبر " class="h-11 w-13">
+                    <span class="mr-2 text-3xl text-orange-primary">نقل عفش 6 اكتوبر </span> <!-- Added company name -->
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200">الرئيسية</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200">خدماتنا</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200">من نحن</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200">المدونة</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" id="contact-nav-link">اتصل بنا</a></li>
+            </ul>
+
+            <!-- Hamburger Menu for Mobile -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-dark-gray focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white z-40 p-4">
+            <div class="flex justify-end">
+                <button id="close-mobile-menu" class="text-dark-gray focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <ul class="flex flex-col items-center space-y-6 text-2xl font-medium mt-8">
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">الرئيسية</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">خدماتنا</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">من نحن</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">المدونة</a></li>
+                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" id="contact-mobile-link" onclick="document.getElementById('mobile-menu').classList.add('hidden')">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Video Hero Section -->
+    <div class="relative w-full overflow-hidden" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+        <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/NdlkTV24tBs?autoplay=1&mute=1&loop=1&playlist=NdlkTV24tBs&controls=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            title="فيديو شركة نقل الأثاث"
+        ></iframe>
+        <!-- 25% Offer Overlay -->
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="bg-orange-primary text-white p-6 md:p-8 rounded-lg shadow-xl offer-shape text-center transform rotate-3 scale-105 transition-transform duration-300 ease-in-out hover:rotate-0 hover:scale-110">
+                <p class="text-4xl md:text-6xl font-extrabold leading-none">خصم 25%!</p>
+                <p class="text-lg md:text-xl font-semibold mt-2">عرض لفترة محدودة</p>
+                <a href="#" class="mt-4 inline-block bg-white text-orange-primary px-6 py-2 rounded-full font-bold text-base md:text-lg shadow-md hover:bg-gray-100 transition-colors duration-200" id="hero-get-quote-button">
+                    احصل على الخصم دلوقتى
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Introduction Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left: Image -->
+            <div class="order-2 md:order-1">
+                <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/2fe94864-080e-410e-b3b2-a51be0881018_05.jpg" alt="" class="rounded-lg shadow-lg w-full h-auto">
+            </div>
+            <!-- Right: Title, Text, CTA -->
+            <div class="order-1 md:order-2 text-right">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-primary mb-6">
+                    شركة لنقل عفش 6 اكتوبر  بضمان الجودة
+                </h2>
+                <p class="text-lg text-dark-gray mb-8">
+                    نقدم خدمات نقل عفش 6 اكتوبر بأعلى معايير الجودة. ضمان عدم الكسر أو الخدش. أسعار تناسب الجميع.
+                </p>
+                <a href="#" class="btn-orange px-6 py-3 inline-block text-lg">
+                    تعرف على المزيد عن خدماتنا
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Features Icons -->
+    <section class="py-16 md:py-24 bg-light-gray-section">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-orange-primary mb-12">
+                لماذا تختارنا؟
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1: نقل عفش 6 اكتوبر بأحدث التقنيات -->
+                <div class="flex flex-col items-center p-6 bg-white rounded-lg card-shadow">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6 shadow-md">
+                        <svg class="w-12 h-12 text-orange-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-orange-primary mb-3">نقل عفش 6 اكتوبر بأحدث التقنيات</h3>
+                    <p class="text-muted-gray">نستخدم أحدث التقنيات والمعدات في عمليات نقل عفش 6 اكتوبر، مما يضمن سلامة الأثاث من البداية وحتى التسليم. أسطول سياراتنا مجهز خصيصاً لنقل جميع أنواع الأثاث بمختلف الأحجام.</p>
+                </div>
+                <!-- Feature 2: ونش رفع العفش بـ  6 اكتوبر للأدوار العالية -->
+                <div class="flex flex-col items-center p-6 bg-white rounded-lg card-shadow">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6 shadow-md">
+                        <svg class="w-12 h-12 text-orange-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-orange-primary mb-3">ونش رفع العفش بـ  6 اكتوبر للأدوار العالية</h3>
+                    <p class="text-muted-gray">نمتلك أحدث أنواع الأوناش لرفع العفش بـ  6 اكتوبر للأدوار العالية بكل سهولة وأمان، مما يوفر الوقت والجهد ويضمن سلامة القطع الكبيرة والثقيلة.</p>
+                </div>
+                <!-- Feature 3: فريق عمل محترف -->
+                <div class="flex flex-col items-center p-6 bg-white rounded-lg card-shadow">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6 shadow-md">
+                        <svg class="w-12 h-12 text-orange-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h2a2 2 0 002-2V8a2 2 0 00-2-2h-2V4a2 2 0 00-2-2H9a2 2 0 00-2 2v2H5a2 2 0 00-2 2v10a2 2 0 002 2h2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-orange-primary mb-3">فريق عمل محترف</h3>
+                    <p class="text-muted-gray">يتكون فريق عملنا من فنيين وعمال مدربين على أعلى مستوى للتعامل مع جميع أنواع الأثاث والمقتنيات الثمينة، مع خبرة في فك وتركيب جميع أنواع غرف النوم والمطابخ والأجهزة الكهربائية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="gradient-bg-orange py-16 md:py-20 text-white text-center">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center">
+                <!-- Stat 1 -->
+                <div>
+                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <p class="text-4xl md:text-5xl font-extrabold mb-2">99%</p>
+                    <p class="text-lg font-medium">رضا العملاء</p>
+                </div>
+                <!-- Stat 2 -->
+                <div>
+                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <p class="text-4xl md:text-5xl font-extrabold mb-2">20+</p>
+                    <p class="text-lg font-medium">سنوات في العمل</p>
+                </div>
+                <!-- Stat 3 -->
+                <div>
+                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <p class="text-4xl md:text-5xl font-extrabold mb-2">5000+</p>
+                    <p class="text-lg font-medium">عملية نقل ناجحة</p>
+                </div>
+                <!-- Stat 4 -->
+                <div>
+                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.747 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <p class="text-4xl md:text-5xl font-extrabold mb-2">24/7</p>
+                    <p class="text-lg font-medium">دعم متاح</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Categories / Blog Cards -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-orange-primary mb-12">
+                خدماتنا الأساسية
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: نقل عفش 6 اكتوبر احترافي بأسعار منافسة -->
+                <div class="bg-white rounded-lg card-shadow overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/371931f4-3293-4594-bf9c-1f6215ade088_15.jpg" alt="" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark-gray mb-3">نقل عفش 6 اكتوبر احترافي بأسعار منافسة</h3>
+                        <p class="text-muted-gray mb-4">نقل عفش 6 اكتوبر احترافي بأسعار منافسة. تغليف فاخر للقطع الثمينة. ضمان وصول الأثاث بحالة ممتازة.</p>
+                        <a href="#" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
+                    </div>
+                </div>
+                <!-- Card 2: شركة لنقل عفش 6 اكتوبر  خدمة 24 ساعة -->
+                <div class="bg-white rounded-lg card-shadow overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/2fe94864-080e-410e-b3b2-a51be0881018_05.jpg" alt="" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark-gray mb-3">شركة لنقل عفش 6 اكتوبر  خدمة 24 ساعة</h3>
+                        <p class="text-muted-gray mb-4">شركة لنقل عفش 6 اكتوبر  تعمل 24 ساعة. خدمة طوارئ متاحة. أسعار خاصة للنقل بين المدن. اتصل الآن!</p>
+                        <a href="#" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
+                    </div>
+                </div>
+                <!-- Card 3: ونش رفع العفش بـ  6 اكتوبر بتقنيات حديثة -->
+                <div class="bg-white rounded-lg card-shadow overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/123809ff-6d43-45a4-9f9b-b237ecbb7c41_11.jpg" alt="" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark-gray mb-3">ونش رفع العفش بـ  6 اكتوبر بتقنيات حديثة</h3>
+                        <p class="text-muted-gray mb-4">ونش رفع العفش بـ  6 اكتوبر بتقنيات حديثة وآمنة. يصل للطوابق العالية بسهولة. فريق عمل محترف.</p>
+                        <a href="#" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Packing Section (Repurposed from Residential Cleaning Showcase) -->
+    <section class="py-16 md:py-24 bg-light-gray-section">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Image Block -->
+                <div class="md:order-1">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/e546a11c-cd52-42d2-b442-8598975f402c_%D8%A7%D8%AD%D8%AC%D8%B2%20%D8%A7%D9%84%D8%A2%D9%86%20%D8%A8%D8%AE%D8%B5%D9%85%20%D9%8A%D8%B5%D9%84%20%D8%A7%D9%84%D9%89%2030%25%20%D9%84%D9%84%D9%86%D9%82%D9%84%20%D9%85%D8%B9%20%D8%AA%D8%BA%D9%84%D9%8A%D9%81%20%D8%B4%D8%A7%D9%85%D9%84%20(32).jpg" alt="" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+                <!-- Text Overlay/Beside -->
+                <div class="md:order-2 text-right">
+                    <h2 class="text-3xl md:text-4xl font-bold text-orange-primary mb-6">
+                        خدمة التغليف الاحترافي
+                    </h2>
+                    <p class="text-lg text-dark-gray mb-8">
+                        نقدم خدمة تغليف احترافية باستخدام أفضل مواد التغليف التي تحمي الأثاث من الخدوش والكسور أثناء النقل، مع اهتمام خاص بالقطع الزجاجية والأجهزة الإلكترونية.
+                    </p>
+                    <ul class="list-disc list-inside text-dark-gray text-lg mb-8 space-y-2 pr-5">
+                        <li>تغليف خاص للأجهزة الإلكترونية والزجاج</li>
+                        <li>استخدام مواد تغليف عالية الجودة</li>
+                        <li>حماية كاملة ضد الخدوش والكسور</li>
+                        <li>فريق متخصص في التغليف الآمن</li>
+                    </ul>
+                    <a href="#" class="btn-orange px-6 py-3 inline-block text-lg">
+                        اكتشف خدمات التغليف
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Specialized Solutions -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-orange-primary text-center mb-12">
+                حلول النقل المتخصصة لدينا
+            </h2>
+
+            <!-- Service Card 1 (Image Left): نقل عفش 6 اكتوبر بدون خدوش أو كسور -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="md:order-1">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/97e5e6bf-930f-4876-9601-782e103304ed_02.jpg" alt="" class="w-full h-48 object-cover">
+                </div>
+                <div class="md:order-2 text-right">
+                    <h3 class="text-2xl font-bold text-dark-gray mb-4">نقل عفش 6 اكتوبر بدون خدوش أو كسور</h3>
+                    <p class="text-lg text-muted-gray mb-6">
+                        نقل عفش 6 اكتوبر بدون خدوش أو كسور مضمون. تغليف احترافي للقطع الحساسة. خصومات للطلبات المسبقة.
+                    </p>
+                    <a href="#" class="btn-blue px-6 py-3 inline-block text-base">تفاصيل الخدمة</a>
+                </div>
+            </div>
+
+            <!-- Service Card 2 (Image Right): نقل عفش 6 اكتوبر مع تغليف وتأمين شامل -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="md:order-2">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/74495ceb-3c7e-4b0e-9135-8175dec5827d_14.jpg" alt="" class="w-full h-48 object-cover">
+                </div>
+                <div class="md:order-1 text-right">
+                    <h3 class="text-2xl font-bold text-dark-gray mb-4">نقل عفش 6 اكتوبر مع تغليف وتأمين شامل</h3>
+                    <p class="text-lg text-muted-gray mb-6">
+                        نقل عفش 6 اكتوبر مع تغليف وتأمين شامل ضد الأضرار. خبرة 20 عامًا في المجال. عروض خاصة للشركات.
+                    </p>
+                    <a href="#" class="btn-blue px-6 py-3 inline-block text-base">تعرف على التأمين</a>
+                </div>
+            </div>
+
+            <!-- Service Card 3 (Image Left): شركة لنقل عفش 6 اكتوبر  عروض موسمية -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="md:order-1">
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/fe764d7e-0465-47ca-b5b8-09ab89f62767_01.jpg" alt="" class="w-full h-48 object-cover">
+                </div>
+                <div class="md:order-2 text-right">
+                    <h3 class="text-2xl font-bold text-dark-gray mb-4">شركة لنقل عفش 6 اكتوبر  عروض موسمية</h3>
+                    <p class="text-lg text-muted-gray mb-6">
+                        شركة لنقل عفش 6 اكتوبر  توفر عروض موسمية. خدمة متكاملة من الباب للباب. تقسيط متاح بدون فوائد.
+                    </p>
+                    <a href="#" class="btn-blue px-6 py-3 inline-block text-base">اكتشف العروض</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Current Offers Section -->
+    <section class="py-16 md:py-24 bg-light-gray-section">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-orange-primary mb-12">
+                عروضنا الحالية
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center">
+                    <h3 class="text-xl font-bold text-dark-gray mb-3">خصم 25% على جميع الخدمات</h3>
+                    <p class="text-muted-gray mb-4">لفترة محدودة على جميع خدمات النقل.</p>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center">
+                    <h3 class="text-xl font-bold text-dark-gray mb-3">فك وتركيب مجاني</h3>
+                    <p class="text-muted-gray mb-4">خدمة الفك والتركيب مجاناً مع كل عملية نقل.</p>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center">
+                    <h3 class="text-xl font-bold text-dark-gray mb-3">تقييم مجاني</h3>
+                    <p class="text-muted-gray mb-4">تقييم مجاني قبل بدء عملية النقل.</p>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center">
+                    <h3 class="text-xl font-bold text-dark-gray mb-3">تأمين شامل</h3>
+                    <p class="text-muted-gray mb-4">تأمين شامل ضد الأضرار لراحة بالكم.</p>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center">
+                    <h3 class="text-xl font-bold text-dark-gray mb-3">خدمة عملاء 24/7</h3>
+                    <p class="text-muted-gray mb-4">خدمة عملاء على مدار الساعة طوال أيام الأسبوع.</p>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center">
+                    <h3 class="text-xl font-bold text-dark-gray mb-3">تقسيط مريح</h3>
+                    <p class="text-muted-gray mb-4">تقسيط مريح بدون فوائد لمدة تصل إلى 6 أشهر.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Map Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-orange-primary mb-12">
+                تجدنا على الخريطة
+            </h2>
+            <div class="bg-white rounded-lg card-shadow overflow-hidden p-4 md:p-6">
+                <!-- Google Maps Embed Placeholder -->
+                <div class="relative w-full" style="padding-bottom: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.696349942663!2d31.2338274150567!3d30.04441958188177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145838f7e2c9f13f%3A0x8f2d5d8e7d2e4e1!2sCairo%2C%20Cairo%20Governorate%2C%20Egypt!5e0!3m2!1sen!2sus!4v1678901234567!5m2!1sen!2sus"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="absolute top-0 left-0 w-full h-full rounded-lg"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-24 bg-light-gray-section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-orange-primary text-center mb-12">
+                الأسئلة الشائعة
+            </h2>
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كم تكلفة نقل عفش 6 اكتوبر شقة كاملة؟</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تختلف التكلفة حسب حجم الأثاث والمسافة وعدد الأدوار، لكننا نقدم أسعاراً تنافسية تبدأ من XXX مع خصومات للمساحات الكبيرة.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل تقدمون خدمة النقل بين المدن؟</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، نقدم خدمة نقل عفش 6 اكتوبر بين جميع المدن مع ضمان الوصول في الموعد المحدد وبحالة ممتازة.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يتم تأمين الأثاث أثناء النقل؟</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نستخدم أفضل مواد التغليف ونتبع إجراءات دقيقة في الترتيب داخل السيارات، كما نقدم تأميناً شاملاً ضد أي أضرار محتملة.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل تقدمون خدمة التخزين المؤقت للأثاث؟</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، نوفر مستودعات آمنة ومكيفة لتخزين الأثاث لفترات قصيرة أو طويلة حسب احتياجاتكم.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كم من الوقت تستغرق عملية نقل عفش 6 اكتوبر؟</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تعتمد المدة على حجم الأثاث والمسافة، لكن معظم عمليات النقل تكتمل خلال يوم واحد بفضل فريق العمل المحترف.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 text-dark-gray py-12 md:py-16">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Left: Company Details -->
+            <div class="text-right">
+                
+                <p class="text-muted-gray mb-4">
+                    شريكك الموثوق به لجميع احتياجات النقل الخاصة بك. نجعل النقل سهلاً وخالياً من التوتر.
+                </p>
+               
+            </div>
+            <!-- Right: Quick Links & Contact Info -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-right">
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-dark-gray">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-muted-gray hover:text-orange-primary transition-colors duration-200">الرئيسية</a></li>
+                        <li><a href="#" class="text-muted-gray hover:text-orange-primary transition-colors duration-200">خدماتنا</a></li>
+                        <li><a href="#" class="text-muted-gray hover:text-orange-primary transition-colors duration-200">من نحن</a></li>
+                        <li><a href="#" class="text-muted-gray hover:text-orange-primary transition-colors duration-200">المدونة</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-dark-gray">اتصل بنا</h4>
+                    <p class="text-muted-gray mb-2">123 شارع النقل، المدينة، البلد</p>
+                    <p class="text-muted-gray mb-2">البريد الإلكتروني: info@moveit.com</p>
+                    <p class="text-muted-gray" id="contact-footer-link">الهاتف: 01014132416</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Call Intent Modal -->
+    <div id="call-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-modal-button" class="modal-close-button">✖</button>
+
+            <!-- Step 1: Confirmation -->
+            <div id="modal-step-1">
+                <h3 class="text-2xl font-bold text-orange-primary mb-4">هل أنت متأكد من رغبتك في الاتصال بنا؟</h3>
+                <p class="text-dark-gray mb-6">
+                    لضمان أفضل خدمة، يرجى التأكد من أن لديك استفسارًا جادًا بخصوص خدمات النقل لدينا.
+                </p>
+                <button id="confirm-call-button" class="btn-orange px-8 py-4 text-xl inline-block">
+                    نعم، أنا متأكد
+                </button>
+            </div>
+
+            <!-- Step 2: Phone Number Display (Initially hidden) -->
+            <div id="modal-step-2" class="hidden-step">
+                <h3 class="text-2xl font-bold text-orange-primary mb-4">رقم الهاتف للتواصل</h3>
+                <p class="text-dark-gray mb-6">
+                     (اضغط على الرقم وسيتم الاتصال بنا)
+                </p>
+                <a href="tel:01014132416" class="btn-orange px-8 py-4 text-xl inline-block">
+                    اتصل بنا الآن: 01014132416
+                </a>
+                <p class="text-muted-gray mt-4 text-sm">
+                     (اضغط على الرقم وسيتم الاتصال بنا)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // JavaScript for Call Intent Modal
+        const heroGetQuoteButton = document.getElementById('hero-get-quote-button');
+        const contactNavLink = document.getElementById('contact-nav-link');
+        const contactMobileLink = document.getElementById('contact-mobile-link');
+        const contactFooterLink = document.getElementById('contact-footer-link');
+        const callModalOverlay = document.getElementById('call-modal-overlay');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const modalStep1 = document.getElementById('modal-step-1');
+        const modalStep2 = document.getElementById('modal-step-2');
+        const confirmCallButton = document.getElementById('confirm-call-button');
+
+        function openCallModal(event) {
+            event.preventDefault(); // Prevent default link behavior
+            modalStep1.classList.remove('hidden-step'); // Show step 1
+            modalStep2.classList.add('hidden-step');    // Hide step 2
+            callModalOverlay.classList.add('show');
+        }
+
+        function closeCallModal() {
+            callModalOverlay.classList.remove('show');
+        }
+
+        // Attach event listeners to buttons/links that should open the modal
+        heroGetQuoteButton.addEventListener('click', openCallModal);
+        contactNavLink.addEventListener('click', openCallModal);
+        contactMobileLink.addEventListener('click', openCallModal);
+        contactFooterLink.addEventListener('click', openCallModal);
+
+        closeModalButton.addEventListener('click', closeCallModal);
+
+        // Event listener for the "Confirm" button
+        confirmCallButton.addEventListener('click', () => {
+            modalStep1.classList.add('hidden-step');    // Hide step 1
+            modalStep2.classList.remove('hidden-step'); // Show step 2
+        });
+
+        // Close modal if clicking outside the content
+        callModalOverlay.addEventListener('click', (event) => {
+            if (event.target === callModalOverlay) {
+                closeCallModal();
+            }
+        });
+
+        // New Catchy Offer Banner Logic
+        const catchyOfferBanner = document.getElementById('catchy-offer-banner');
+        const newCountdownTimerElement = document.getElementById('new-countdown-timer');
+        const closeNewBannerButton = document.getElementById('close-new-banner-button');
+        const newBannerCtaButton = document.getElementById('new-banner-cta-button');
+
+        // Link the new banner's CTA to the call modal
+        newBannerCtaButton.addEventListener('click', openCallModal);
+
+        // Set the end time to 4 hours from now
+        const endTime = new Date().getTime() + (4 * 60 * 60 * 1000); // 4 hours in milliseconds
+        let countdownInterval; // Declare interval globally to clear it
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+
+            // Calculate time components
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Format the time with leading zeros and Arabic labels
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                newCountdownTimerElement.innerHTML = "انتهى العرض!";
+                catchyOfferBanner.classList.add('hide'); // Hide banner when time is up
+            } else {
+                newCountdownTimerElement.innerHTML = `${formattedHours} ساعة : ${formattedMinutes} دقيقة : ${formattedSeconds} ثانية`;
+            }
+        }
+
+        // Initial call to display the countdown immediately
+        window.addEventListener('load', () => {
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000); // Start interval after load
+        });
+
+        // Close banner button functionality
+        closeNewBannerButton.addEventListener('click', () => {
+            catchyOfferBanner.classList.add('hide');
+            clearInterval(countdownInterval); // Stop the countdown when closed manually
+        });
+
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.closest('.faq-item');
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
