@@ -19,188 +19,87 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'El Messiri', sans-serif; /* Changed font to El Messiri */
-            color: #444444; /* Neutral Text */
+            font-family: 'El Messiri', sans-serif;
+            color: #444444;
         }
         .gradient-bg-hero {
-            background: linear-gradient(to bottom, #f9f9f9, #ffffff); /* Light gray-to-white vertical gradient */
+            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
         }
         .gradient-bg-orange {
-            background: linear-gradient(to right, #ff7700, #ffa500); /* Bright orange gradient */
+            background: linear-gradient(to right, #ff7700, #ffa500);
         }
         .btn-orange {
-            background-color: #ff7700; /* CTA Button Orange */
+            background-color: #ff7700;
             color: #ffffff;
-            border-radius: 20px; /* Rounded pill */
+            border-radius: 20px;
             font-weight: bold;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .btn-orange:hover {
-            background-color: #ea661c; /* Darker orange */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow */
+            background-color: #ea661c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .btn-blue {
-            background-color: #005eff; /* Action Buttons Blue */
+            background-color: #005eff;
             color: #ffffff;
-            border-radius: 20px; /* Rounded pill */
+            border-radius: 20px;
             font-weight: bold;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .btn-blue:hover {
-            transform: translateY(-2px); /* Subtle hover lift */
+            transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .text-orange-primary {
-            color: #ea661c; /* Primary Brand Color Orange */
+            color: #ea661c;
         }
         .text-dark-gray {
-            color: #333333; /* Dark gray for header text */
+            color: #333333;
         }
         .text-medium-gray {
-            color: #666666; /* Medium gray for subtext */
+            color: #666666;
         }
         .text-muted-gray {
-            color: #777777; /* Muted gray for descriptions */
+            color: #777777;
         }
         .bg-light-gray-section {
-            background-color: #f9f9f9; /* Section Background Very Light Gray */
+            background-color: #f9f9f9;
         }
         .card-shadow {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Slight shadow for cards */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        /* Custom style for the offer shape */
-        .offer-shape {
-            clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%, 10% 50%);
-        }
-
-        /* Modal styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        
+        /* Carousel Styles */
+        .carousel-slide {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        .modal-overlay.show {
+        .carousel-slide.active {
             opacity: 1;
-            visibility: visible;
+            z-index: 10;
         }
-        .modal-content {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            max-width: 90%;
-            width: 400px;
-            text-align: center;
-            position: relative;
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
+        
+        /* Floating Button Animations */
+        @keyframes pulse-custom {
+            0% { box-shadow: 0 0 0 0 rgba(255, 119, 0, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 119, 0, 0); transform: scale(1.05); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 119, 0, 0); transform: scale(1); }
         }
-        .modal-overlay.show .modal-content {
-            transform: translateY(0);
-        }
-        .modal-close-button {
-            position: absolute;
-            top: 10px;
-            left: 10px; /* Adjusted for RTL */
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-        }
-        .hidden-step {
-            display: none;
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); transform: scale(1.05); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); transform: scale(1); }
         }
 
-        /* New Catchy Offer Banner Styles */
-        .catchy-banner {
-            background-color: #dc2626; /* Red-600 */
-            color: #ffffff;
-            padding: 0.3rem 0.75rem; /* Smaller padding for mobile */
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem; /* Smaller gap for mobile */
-            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 95%; /* Default to wider on small screens */
-            max-width: 700px; /* Max width for larger screens */
-            border-radius: 9999px; /* Pill shape */
-            z-index: 900; /* Ensure it's above other content */
+        .floating-btn-phone {
+            animation: pulse-custom 2s infinite;
         }
-        @media (min-width: 768px) { /* Apply larger padding and gap on medium screens and up */
-            .catchy-banner {
-                padding: 0.75rem 1.5rem;
-                gap: 1rem;
-            }
-        }
-        .catchy-banner .countdown-box {
-            background-color: #ffffff;
-            color: #dc2626; /* Red-600 */
-            padding: 0.2rem 0.6rem; /* Smaller padding for mobile */
-            border-radius: 9999px; /* Pill shape */
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        @media (min-width: 768px) {
-            .catchy-banner .countdown-box {
-                padding: 0.25rem 0.75rem;
-            }
-        }
-        .catchy-banner .cta-button {
-            background-color: #fcd34d; /* Yellow-300 */
-            color: #9a3412; /* Red-800 */
-            padding: 0.4rem 0.8rem; /* Smaller padding for mobile */
-            border-radius: 9999px; /* Pill shape */
-            font-weight: bold;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            white-space: nowrap;
-        }
-        @media (min-width: 768px) {
-            .catchy-banner .cta-button {
-                padding: 0.5rem 1rem;
-            }
-        }
-        .catchy-banner .cta-button:hover {
-            background-color: #facc15; /* Yellow-400 */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .catchy-banner .close-button {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.2rem; /* Smaller font size for mobile close button */
-            cursor: pointer;
-            position: absolute;
-            right: 0.5rem; /* Adjusted for smaller size */
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        @media (min-width: 768px) {
-            .catchy-banner .close-button {
-                font-size: 1.5rem;
-                right: 1rem;
-            }
-        }
-        .catchy-banner.hide {
-            opacity: 0;
-            transform: translateX(-50%) translateY(100px); /* Adjusted for bottom position */
-            pointer-events: none; /* Disable interactions when hidden */
+        .floating-btn-whatsapp {
+            animation: pulse-green 2s infinite;
         }
 
         /* FAQ styles */
@@ -227,7 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .faq-answer {
             padding: 1rem 1.5rem;
             color: #444444;
-            display: none; /* Hidden by default */
+            display: none;
         }
         .faq-item.active .faq-answer {
             display: block;
@@ -240,24 +139,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
     </style>
 </head>
-<body>
+<body class="pb-20"> <!-- Added padding bottom to prevent floating buttons from overlapping content on mobile -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDWNCW2Q"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-
-    <!-- New Catchy Offer Banner -->
-    <div id="catchy-offer-banner" class="catchy-banner">
-        <span class="text-sm md:text-lg font-bold">خصم : 33% لنقل  العفش - ينتهى خلال!</span>
-        <div class="countdown-box">
-            <span id="new-countdown-timer" class="text-xs md:text-base"></span>
-        </div>
-        <a href="#" id="new-banner-cta-button" class="cta-button text-sm md:text-base">
-            إستفد بالخصم الأن!
-        </a>
-        <button id="close-new-banner-button" class="close-button">&times;</button>
-    </div>
 
     <!-- Header & Navigation -->
     <header class="bg-white text-dark-gray shadow-sm sticky top-0 z-50">
@@ -266,7 +153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="flex items-center">
                 <a href="#" class="flex items-center text-2xl font-bold text-dark-gray">
                     <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/imgs/elsaree3-logo-transparent.png" alt="شعار أبناء مصر لنقل العفش" class="h-10 w-auto">
-                    <span class="mr-2 text-3xl text-orange-primary">أبناء مصر لنقل العفش</span> <!-- Added company name -->
+                    <span class="mr-2 text-3xl text-orange-primary">أبناء مصر لنقل العفش</span>
                 </a>
             </div>
 
@@ -276,7 +163,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li><a href="#" class="hover:text-orange-primary transition-colors duration-200">خدماتنا</a></li>
                 <li><a href="#" class="hover:text-orange-primary transition-colors duration-200">من نحن</a></li>
                 <li><a href="#" class="hover:text-orange-primary transition-colors duration-200">المدونة</a></li>
-                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" id="contact-nav-link">اتصل بنا</a></li>
+                <li><a href="tel:01035826736" class="hover:text-orange-primary transition-colors duration-200">اتصل بنا</a></li>
             </ul>
 
             <!-- Hamburger Menu for Mobile -->
@@ -303,30 +190,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">خدماتنا</a></li>
                 <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">من نحن</a></li>
                 <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">المدونة</a></li>
-                <li><a href="#" class="hover:text-orange-primary transition-colors duration-200" id="contact-mobile-link" onclick="document.getElementById('mobile-menu').classList.add('hidden')">اتصل بنا</a></li>
+                <li><a href="tel:01035826736" class="hover:text-orange-primary transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">اتصل بنا</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Video Hero Section -->
-    <div class="relative w-full overflow-hidden" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
-        <iframe
-            class="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/NdlkTV24tBs?autoplay=1&mute=1&loop=1&playlist=NdlkTV24tBs&controls=0"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            title="فيديو شركة نقل الأثاث"
-        ></iframe>
-        <!-- 40% Offer Overlay -->
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-            <div class="bg-orange-primary text-white p-6 md:p-8 rounded-lg shadow-xl offer-shape text-center transform rotate-3 scale-105 transition-transform duration-300 ease-in-out hover:rotate-0 hover:scale-110">
-                <p class="text-4xl md:text-6xl font-extrabold leading-none">خصم 33%!</p>
-                <p class="text-lg md:text-xl font-semibold mt-2">عرض لفترة محدودة</p>
-                <a href="#" class="mt-4 inline-block bg-white text-orange-primary px-6 py-2 rounded-full font-bold text-base md:text-lg shadow-md hover:bg-gray-100 transition-colors duration-200" id="hero-get-quote-button">
-                    احصل على الخصم دلوقتى
-                </a>
+    <!-- Hero Section: Carousel -->
+    <div class="relative w-full h-[500px] md:h-[600px] overflow-hidden bg-gray-100 group">
+        <!-- Carousel Slides -->
+        <div id="hero-carousel" class="relative w-full h-full">
+            
+            <!-- Slide 1 -->
+            <div class="carousel-slide active">
+                <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/fe764d7e-0465-47ca-b5b8-09ab89f62767_01.jpg" alt="نقل عفش" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">خدمات نقل العفش المتكاملة</h1>
+                        <p class="text-xl md:text-2xl mb-8 drop-shadow-md">أمان، سرعة، وكفاءة عالية في النقل</p>
+                        <a href="tel:01035826736" class="btn-orange px-8 py-3 text-lg shadow-lg">اطلب خدمة النقل الآن</a>
+                    </div>
+                </div>
             </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+                <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/e546a11c-cd52-42d2-b442-8598975f402c_%D8%A7%D8%AD%D8%AC%D8%B2%20%D8%A7%D9%84%D8%A2%D9%86%20%D8%A8%D8%AE%D8%B5%D9%85%20%D9%8A%D8%B5%D9%84%20%D8%A7%D9%84%D9%89%2030%25%20%D9%84%D9%84%D9%86%D9%82%D9%84%20%D9%85%D8%B9%20%D8%AA%D8%BA%D9%84%D9%8A%D9%81%20%D8%B4%D8%A7%D9%85%D9%84%20(32).jpg" alt="تغليف الأثاث" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">تغليف احترافي للأثاث</h1>
+                        <p class="text-xl md:text-2xl mb-8 drop-shadow-md">نستخدم أفضل مواد التغليف لحماية مقتنياتك</p>
+                        <a href="tel:01035826736" class="btn-orange px-8 py-3 text-lg shadow-lg">احصل على عرض سعر</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+                <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/uploads/blog/123809ff-6d43-45a4-9f9b-b237ecbb7c41_11.jpg" alt="أوناش رفع الأثاث" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">أحدث معدات الرفع</h1>
+                        <p class="text-xl md:text-2xl mb-8 drop-shadow-md">أوناش هيدروليكية للأدوار العليا بأمان تام</p>
+                        <a href="tel:01035826736" class="btn-orange px-8 py-3 text-lg shadow-lg">تواصل معنا اليوم</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Carousel Indicators (Fixed) -->
+        <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-3 z-20" dir="ltr">
+            <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-100 transition-opacity duration-300" onclick="showSlide(0)"></button>
+            <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity duration-300" onclick="showSlide(1)"></button>
+            <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity duration-300" onclick="showSlide(2)"></button>
         </div>
     </div>
 
@@ -345,7 +261,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="text-lg text-dark-gray mb-8">
                     نقدم خدمات نقل العفش بأعلى معايير الجودة. ضمان عدم الكسر أو الخدش. أسعار تناسب الجميع.
                 </p>
-                <a href="#" class="btn-orange px-6 py-3 inline-block text-lg">
+                <a href="tel:01035826736" class="btn-orange px-6 py-3 inline-block text-lg">
                     تعرف على المزيد عن خدماتنا
                 </a>
             </div>
@@ -448,7 +364,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-dark-gray mb-3">نقل عفش احترافي بأسعار منافسة</h3>
                         <p class="text-muted-gray mb-4">نقل عفش احترافي بأسعار منافسة. تغليف فاخر للقطع الثمينة. ضمان وصول الأثاث بحالة ممتازة.</p>
-                        <a href="#" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
+                        <a href="tel:01035826736" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
                     </div>
                 </div>
                 <!-- Card 2: شركة لنقل العفش خدمة 24 ساعة -->
@@ -457,7 +373,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-dark-gray mb-3">شركة لنقل العفش خدمة 24 ساعة</h3>
                         <p class="text-muted-gray mb-4">شركة لنقل العفش تعمل 24 ساعة. خدمة طوارئ متاحة. أسعار خاصة للنقل بين المدن. اتصل الآن!</p>
-                        <a href="#" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
+                        <a href="tel:01035826736" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
                     </div>
                 </div>
                 <!-- Card 3: ونش رفع العفش بتقنيات حديثة -->
@@ -466,7 +382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-dark-gray mb-3">ونش رفع العفش بتقنيات حديثة</h3>
                         <p class="text-muted-gray mb-4">ونش رفع العفش بتقنيات حديثة وآمنة. يصل للطوابق العالية بسهولة. فريق عمل محترف.</p>
-                        <a href="#" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
+                        <a href="tel:01035826736" class="btn-blue px-6 py-2 inline-block text-base">اقرأ المزيد</a>
                 </div>
             </div>
         </div>
@@ -494,7 +410,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <li>حماية كاملة ضد الخدوش والكسور</li>
                         <li>فريق متخصص في التغليف الآمن</li>
                     </ul>
-                    <a href="#" class="btn-orange px-6 py-3 inline-block text-lg">
+                    <a href="tel:01035826736" class="btn-orange px-6 py-3 inline-block text-lg">
                         اكتشف خدمات التغليف
                     </a>
                 </div>
@@ -519,7 +435,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <p class="text-lg text-muted-gray mb-6">
                         نقل العفش بدون خدوش أو كسور مضمون. تغليف احترافي للقطع الحساسة. خصومات للطلبات المسبقة.
                     </p>
-                    <a href="#" class="btn-blue px-6 py-3 inline-block text-base">تفاصيل الخدمة</a>
+                    <a href="tel:01035826736" class="btn-blue px-6 py-3 inline-block text-base">تفاصيل الخدمة</a>
                 </div>
             </div>
 
@@ -533,7 +449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <p class="text-lg text-muted-gray mb-6">
                         نقل عفش مع تغليف وتأمين شامل ضد الأضرار. خبرة 20 عامًا في المجال. عروض خاصة للشركات.
                     </p>
-                    <a href="#" class="btn-blue px-6 py-3 inline-block text-base">تعرف على التأمين</a>
+                    <a href="tel:01035826736" class="btn-blue px-6 py-3 inline-block text-base">تعرف على التأمين</a>
                 </div>
             </div>
 
@@ -547,7 +463,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <p class="text-lg text-muted-gray mb-6">
                         شركة لنقل العفش توفر عروض موسمية. خدمة متكاملة من الباب للباب. تقسيط متاح بدون فوائد.
                     </p>
-                    <a href="#" class="btn-blue px-6 py-3 inline-block text-base">اكتشف العروض</a>
+                    <a href="tel:01035826736" class="btn-blue px-6 py-3 inline-block text-base">اكتشف العروض</a>
                 </div>
             </div>
         </div>
@@ -674,19 +590,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 text-dark-gray py-12 md:py-16">
+    <footer class="bg-gray-100 text-dark-gray py-12 md:py-16 pb-24 md:pb-16">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Left: Company Details -->
             <div class="text-right">
                 <div class="flex items-center justify-end mb-4">
-                    <span class="text-3xl font-bold text-dark-gray">MoveIt</span>
-                    <span class="text-orange-primary text-3xl font-bold ml-2">🧼</span>
+                    <img src="https://raw.githubusercontent.com/code-house10/01014132416new/refs/heads/main/imgs/elsaree3-logo-transparent.png" alt="شعار أبناء مصر لنقل العفش" class="h-10 w-auto ml-2">
+                    <span class="text-3xl font-bold text-orange-primary">أبناء مصر لنقل العفش</span>
                 </div>
                 <p class="text-muted-gray mb-4">
                     شريكك الموثوق به لجميع احتياجات النقل الخاصة بك. نجعل النقل سهلاً وخالياً من التوتر.
                 </p>
                 <p class="text-muted-gray">
-                    &copy; 2025 MoveIt. جميع الحقوق محفوظة.
+                    &copy; 2025 أبناء مصر لنقل العفش. جميع الحقوق محفوظة.
                 </p>
             </div>
             <!-- Right: Quick Links & Contact Info -->
@@ -704,43 +620,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <h4 class="font-bold text-lg mb-4 text-dark-gray">اتصل بنا</h4>
                     <p class="text-muted-gray mb-2">123 شارع النقل، المدينة، البلد</p>
                     <p class="text-muted-gray mb-2">البريد الإلكتروني: info@moveit.com</p>
-                    <p class="text-muted-gray" id="contact-footer-link">الهاتف: 01014132416</p>
+                    <p class="text-muted-gray">الهاتف: 01014132416</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Call Intent Modal -->
-    <div id="call-modal-overlay" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-modal-button" class="modal-close-button">✖</button>
-
-            <!-- Step 1: Confirmation -->
-            <div id="modal-step-1">
-                <h3 class="text-2xl font-bold text-orange-primary mb-4">هل أنت متأكد من رغبتك في الاتصال بنا؟</h3>
-                <p class="text-dark-gray mb-6">
-                    لضمان أفضل خدمة، يرجى التأكد من أن لديك استفسارًا جادًا بخصوص خدمات النقل لدينا.
-                </p>
-                <button id="confirm-call-button" class="btn-orange px-8 py-4 text-xl inline-block">
-                    نعم، أنا متأكد
-                </button>
-            </div>
-
-            <!-- Step 2: Phone Number Display (Initially hidden) -->
-            <div id="modal-step-2" class="hidden-step">
-                <h3 class="text-2xl font-bold text-orange-primary mb-4">رقم الهاتف للتواصل</h3>
-                <p class="text-dark-gray mb-6">
-                     (اضغط على الرقم وسيتم الاتصال بنا)
-                </p>
-                <a href="tel:01014132416" class="btn-orange px-8 py-4 text-xl inline-block">
-                    اتصل بنا الآن: 01014132416
-                </a>
-                <p class="text-muted-gray mt-4 text-sm">
-                     (اضغط على الرقم وسيتم الاتصال بنا)
-                </p>
-            </div>
+    <!-- Floating Buttons -->
+    
+    <!-- Floating Call Button (Left) -->
+    <a href="tel:01035826736" class="floating-btn-phone fixed bottom-4 left-4 z-50 flex items-center bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 shadow-lg transition-all duration-300">
+        <div class="bg-white rounded-full p-2 ml-2">
+            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.49-5.15-3.8-6.62-6.65l1.97-1.57c.26-.29.35-.69.24-1.07-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3.25 3 3.93 3 5.3c0 8.87 8.03 16.1 16.1 16.1 1.37 0 2.05-.65 2.05-1.19v-3.74c0-.54-.45-.99-.99-.99z"/>
+            </svg>
         </div>
-    </div>
+        <span class="font-bold text-lg px-2" dir="ltr">01035826736</span>
+    </a>
+
+    <!-- Floating WhatsApp Button (Right) -->
+    <a href="https://wa.me/201035826736" target="_blank" class="floating-btn-whatsapp fixed bottom-4 right-4 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full p-4 shadow-lg transition-colors duration-300">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
 
     <script>
         // JavaScript for mobile menu toggle
@@ -756,97 +659,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             mobileMenu.classList.add('hidden');
         });
 
-        // JavaScript for Call Intent Modal
-        const heroGetQuoteButton = document.getElementById('hero-get-quote-button');
-        const contactNavLink = document.getElementById('contact-nav-link');
-        const contactMobileLink = document.getElementById('contact-mobile-link');
-        const contactFooterLink = document.getElementById('contact-footer-link');
-        const callModalOverlay = document.getElementById('call-modal-overlay');
-        const closeModalButton = document.getElementById('close-modal-button');
-        const modalStep1 = document.getElementById('modal-step-1');
-        const modalStep2 = document.getElementById('modal-step-2');
-        const confirmCallButton = document.getElementById('confirm-call-button');
-
-        function openCallModal(event) {
-            event.preventDefault(); // Prevent default link behavior
-            modalStep1.classList.remove('hidden-step'); // Show step 1
-            modalStep2.classList.add('hidden-step');    // Hide step 2
-            callModalOverlay.classList.add('show');
-        }
-
-        function closeCallModal() {
-            callModalOverlay.classList.remove('show');
-        }
-
-        // Attach event listeners to buttons/links that should open the modal
-        heroGetQuoteButton.addEventListener('click', openCallModal);
-        contactNavLink.addEventListener('click', openCallModal);
-        contactMobileLink.addEventListener('click', openCallModal);
-        contactFooterLink.addEventListener('click', openCallModal);
-
-        closeModalButton.addEventListener('click', closeCallModal);
-
-        // Event listener for the "Confirm" button
-        confirmCallButton.addEventListener('click', () => {
-            modalStep1.classList.add('hidden-step');    // Hide step 1
-            modalStep2.classList.remove('hidden-step'); // Show step 2
-        });
-
-        // Close modal if clicking outside the content
-        callModalOverlay.addEventListener('click', (event) => {
-            if (event.target === callModalOverlay) {
-                closeCallModal();
-            }
-        });
-
-        // New Catchy Offer Banner Logic
-        const catchyOfferBanner = document.getElementById('catchy-offer-banner');
-        const newCountdownTimerElement = document.getElementById('new-countdown-timer');
-        const closeNewBannerButton = document.getElementById('close-new-banner-button');
-        const newBannerCtaButton = document.getElementById('new-banner-cta-button');
-
-        // Link the new banner's CTA to the call modal
-        newBannerCtaButton.addEventListener('click', openCallModal);
-
-        // Set the end time to 4 hours from now
-        const endTime = new Date().getTime() + (4 * 60 * 60 * 1000); // 4 hours in milliseconds
-        let countdownInterval; // Declare interval globally to clear it
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = endTime - now;
-
-            // Calculate time components
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Format the time with leading zeros and Arabic labels
-            const formattedHours = String(hours).padStart(2, '0');
-            const formattedMinutes = String(minutes).padStart(2, '0');
-            const formattedSeconds = String(seconds).padStart(2, '0');
-
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                newCountdownTimerElement.innerHTML = "انتهى العرض!";
-                catchyOfferBanner.classList.add('hide'); // Hide banner when time is up
-            } else {
-                newCountdownTimerElement.innerHTML = `${formattedHours} ساعة : ${formattedMinutes} دقيقة : ${formattedSeconds} ثانية`;
-            }
-        }
-
-        // Initial call to display the countdown immediately
-        window.addEventListener('load', () => {
-            updateCountdown();
-            countdownInterval = setInterval(updateCountdown, 1000); // Start interval after load
-        });
-
-        // Close banner button functionality
-        closeNewBannerButton.addEventListener('click', () => {
-            catchyOfferBanner.classList.add('hide');
-            clearInterval(countdownInterval); // Stop the countdown when closed manually
-        });
-
         // FAQ Accordion Logic
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
@@ -854,6 +666,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 faqItem.classList.toggle('active');
             });
         });
+
+        // Carousel Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator'); // Select indicators
+        const totalSlides = slides.length;
+        const slideIntervalTime = 5000; // Change slide every 5 seconds
+
+        function showSlide(index) {
+            // Update Slides
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update Indicators
+            indicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.remove('opacity-50');
+                    indicator.classList.add('opacity-100');
+                } else {
+                    indicator.classList.add('opacity-50');
+                    indicator.classList.remove('opacity-100');
+                }
+            });
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+
+        // Initialize Carousel Auto-play
+        const carouselInterval = setInterval(nextSlide, slideIntervalTime);
+        
+        // Optional: Reset timer when user manually clicks to avoid immediate jump
+        function manualShowSlide(index) {
+            showSlide(index);
+            // We can optionally clear and restart interval here if desired, 
+            // but keeping it simple is usually fine for this use case.
+        }
+
     </script>
 </body>
 </html>
